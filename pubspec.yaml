@@ -1,7 +1,7 @@
 name: signale
 description: A new Flutter package project.
-version: 0.0.1
-homepage: http://nightmare.fun
+version: 0.0.2
+homepage: https://github.com/Nightmare-MY/signale
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
