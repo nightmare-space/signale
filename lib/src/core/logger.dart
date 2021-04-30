@@ -10,54 +10,54 @@ class Logger {
   String tag = '';
 
   /// verbose
-  void v(Object object) {
+  void v(Object object, {String? tag}) {
     final String data = '$_verboseSeq$object$_defaultColor';
     String suffix = '';
     if (!object.toString().endsWith('\n')) {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, 'V');
+    _printCall(data, tag ?? 'V');
   }
 
-  void d(Object object) {
+  void d(Object object, {String? tag}) {
     final String data = '${_ansiCsi}1;34m$object\x1B[0m';
     String suffix = '';
     if (!object.toString().endsWith('\n')) {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, 'D');
+    _printCall(data, tag ?? 'D');
   }
 
-  void i(Object object) {
+  void i(Object object, {String? tag}) {
     final String data = '${_ansiCsi}1;39m$object\x1B[0m';
     String suffix = '';
     if (!object.toString().endsWith('\n')) {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, 'I');
+    _printCall(data, tag ?? 'I');
   }
 
-  void w(Object object) {
+  void w(Object object, {String? tag}) {
     final String data = '${_ansiCsi}1;33m$object\x1B[0m';
     String suffix = '';
     if (!object.toString().endsWith('\n')) {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, 'W');
+    _printCall(data, tag ?? 'W');
   }
 
-  void e(Object object) {
+  void e(Object object, {String? tag}) {
     final String data = '${_ansiCsi}1;31m$object\x1B[0m';
     String suffix = '';
     if (!object.toString().endsWith('\n')) {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, 'E');
+    _printCall(data, tag ?? 'E');
   }
 
   void _printCall(String data, String tag) {
@@ -70,9 +70,6 @@ class Logger {
     int? backColor,
     String? tag,
   }) {
-    if (tag == null) {
-      tag = 'Custom';
-    }
     String foreTag = '38';
     String backTag = '48';
     if (foreColor == null) {
@@ -83,7 +80,7 @@ class Logger {
     }
     _printCall(
       '$_ansiCsi$foreTag;5;${foreColor ?? '0'}m$_ansiCsi$backTag;5;${backColor ?? '0'}m$object$_defaultColor',
-      tag.toString(),
+      tag ?? 'Custom',
     );
   }
 }

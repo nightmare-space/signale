@@ -3,14 +3,48 @@ import 'core/logger.dart';
 Logger defaultLogger = Logger();
 
 class Log {
-  static void d(Object object) => defaultLogger.d(object);
-  static void v(Object object) => defaultLogger.v(object);
-  static void i(Object object) => defaultLogger.i(object);
-  static void w(Object object) => defaultLogger.w(object);
-  static void e(Object object) => defaultLogger.e(object);
+  static void d(Object object, {String? tag}) {
+    defaultLogger.d(
+      object,
+      tag: tag,
+    );
+  }
+
+  static void i(Object object, {String? tag}) {
+    defaultLogger.i(
+      object,
+      tag: tag,
+    );
+  }
+
+  static void w(Object object, {String? tag}) {
+    defaultLogger.w(
+      object,
+      tag: tag,
+    );
+  }
+
+  static void v(Object object, {String? tag}) {
+    defaultLogger.v(
+      object,
+      tag: tag,
+    );
+  }
+
+  static void e(Object object, {String? tag}) {
+    defaultLogger.e(
+      object,
+      tag: tag,
+    );
+  }
+
   static void custom(
     Object object, {
+
+    /// 前景色 0-255
     int? foreColor,
+
+    /// 背景色 0-255
     int? backColor,
     String? tag,
   }) {

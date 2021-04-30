@@ -1,3 +1,11 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* create package.
+
+## 0.0.2
+
+* 🚀 Complete functions.
+
+## 0.0.3
+
+* 🚀 Improve the code.
