@@ -1,3 +1,5 @@
+part of signale;
+
 String _ansiCsi = '\x1b[';
 String _defaultColor = '${_ansiCsi}0m';
 String _verboseSeq = '${_ansiCsi}38;5;244m';

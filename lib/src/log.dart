@@ -1,4 +1,4 @@
-import 'core/logger.dart';
+part of signale;
 
 Logger defaultLogger = Logger();
 

@@ -1,3 +1,3 @@
-import 'package:signale/src/core/logger.dart';
+part of signale;
 
 extension LoggerExtension on Logger {}

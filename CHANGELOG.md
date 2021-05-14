@@ -9,3 +9,6 @@
 ## 0.0.3
 
 * 🚀 Improve the code.
+## 0.0.4
+
+* 🚀 Adjust project structure.
