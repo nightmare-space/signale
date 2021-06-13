@@ -12,3 +12,6 @@
 ## 0.0.4
 
 * 🚀 Adjust project structure.
+## 0.0.5
+
+* support get buffer.
