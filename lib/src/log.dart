@@ -53,7 +53,7 @@ class Log {
       object,
       foreColor: foreColor,
       backColor: backColor,
-      tag: tag,
+      tag: tag!,
     );
   }
 }

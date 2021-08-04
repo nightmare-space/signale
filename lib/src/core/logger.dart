@@ -5,6 +5,8 @@ String _defaultColor = '${_ansiCsi}0m';
 String _verboseSeq = '${_ansiCsi}38;5;244m';
 
 class Logger {
+  Logger({this.logDelegate = const DefaultPrint()});
+  Logable logDelegate;
   StringBuffer _buffer = StringBuffer();
 
   StringBuffer get buffer => _buffer;
@@ -19,7 +21,7 @@ class Logger {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, tag ?? 'V');
+    logDelegate.log('$_verboseSeq[V] $data');
   }
 
   void d(Object object, {String? tag}) {
@@ -29,7 +31,7 @@ class Logger {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, tag ?? 'D');
+    logDelegate.log('$_verboseSeq[D] $data');
   }
 
   void i(Object object, {String? tag}) {
@@ -39,7 +41,7 @@ class Logger {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, tag ?? 'I');
+    logDelegate.log('$_verboseSeq[I] $data');
   }
 
   void w(Object object, {String? tag}) {
@@ -49,7 +51,7 @@ class Logger {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, tag ?? 'W');
+    logDelegate.log('$_verboseSeq[W] $data');
   }
 
   void e(Object object, {String? tag}) {
@@ -59,18 +61,14 @@ class Logger {
       suffix += '\n';
     }
     _buffer.write(data + suffix);
-    _printCall(data, tag ?? 'E');
-  }
-
-  void _printCall(String data, String tag) {
-    print('$_verboseSeq[$tag] $data');
+    logDelegate.log('$_verboseSeq[E] $data');
   }
 
   void custom(
     Object object, {
     int? foreColor,
     int? backColor,
-    String? tag,
+    String tag = 'custom',
   }) {
     String foreTag = '38';
     String backTag = '48';
@@ -80,9 +78,8 @@ class Logger {
     if (backColor == null) {
       backTag = '49';
     }
-    _printCall(
-      '$_ansiCsi$foreTag;5;${foreColor ?? '0'}m$_ansiCsi$backTag;5;${backColor ?? '0'}m$object$_defaultColor',
-      tag ?? 'Custom',
-    );
+
+    logDelegate.log(
+        '$_verboseSeq[$tag] $_ansiCsi$foreTag;5;${foreColor ?? '0'}m$_ansiCsi$backTag;5;${backColor ?? '0'}m$object$_defaultColor');
   }
 }
