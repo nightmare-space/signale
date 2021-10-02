@@ -12,56 +12,35 @@ class Logger {
   StringBuffer get buffer => _buffer;
 
   String tag = '';
+  void _print(Object object, String tag, String colorTag) {
+    final String data = '$object';
+    data.split('\n').forEach((element) {
+      final String line =
+          '$_verboseSeq[$tag] ${_ansiCsi}1;${colorTag}m$element$_defaultColor';
+      _buffer.write(line + '\n');
+      logDelegate.log(line);
+    });
+  }
 
   /// verbose
   void v(Object object, {String? tag}) {
-    final String data = '$_verboseSeq$object$_defaultColor';
-    String suffix = '';
-    if (!object.toString().endsWith('\n')) {
-      suffix += '\n';
-    }
-    _buffer.write(data + suffix);
-    logDelegate.log('$_verboseSeq[V] $data');
+    _print(object, tag ?? 'V', '0');
   }
 
   void d(Object object, {String? tag}) {
-    final String data = '${_ansiCsi}1;34m$object\x1B[0m';
-    String suffix = '';
-    if (!object.toString().endsWith('\n')) {
-      suffix += '\n';
-    }
-    _buffer.write(data + suffix);
-    logDelegate.log('$_verboseSeq[D] $data');
+    _print(object, tag ?? 'D', '34');
   }
 
   void i(Object object, {String? tag}) {
-    final String data = '${_ansiCsi}1;39m$object\x1B[0m';
-    String suffix = '';
-    if (!object.toString().endsWith('\n')) {
-      suffix += '\n';
-    }
-    _buffer.write(data + suffix);
-    logDelegate.log('$_verboseSeq[I] $data');
+    _print(object, tag ?? 'I', '39');
   }
 
   void w(Object object, {String? tag}) {
-    final String data = '${_ansiCsi}1;33m$object\x1B[0m';
-    String suffix = '';
-    if (!object.toString().endsWith('\n')) {
-      suffix += '\n';
-    }
-    _buffer.write(data + suffix);
-    logDelegate.log('$_verboseSeq[W] $data');
+    _print(object, tag ?? 'W', '33');
   }
 
   void e(Object object, {String? tag}) {
-    final String data = '${_ansiCsi}1;31m$object\x1B[0m';
-    String suffix = '';
-    if (!object.toString().endsWith('\n')) {
-      suffix += '\n';
-    }
-    _buffer.write(data + suffix);
-    logDelegate.log('$_verboseSeq[E] $data');
+    _print(object, tag ?? 'E', '31');
   }
 
   void custom(
