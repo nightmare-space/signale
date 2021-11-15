@@ -18,7 +18,7 @@ class Logger {
       final String line =
           '$_verboseSeq[$tag] ${_ansiCsi}1;${colorTag}m$element$_defaultColor';
       _buffer.write(line + '\n');
-      logDelegate.log(line);
+      logDelegate.log(DateTime.now(), line);
     });
   }
 
@@ -58,7 +58,7 @@ class Logger {
       backTag = '49';
     }
 
-    logDelegate.log(
-        '$_verboseSeq[$tag] $_ansiCsi$foreTag;5;${foreColor ?? '0'}m$_ansiCsi$backTag;5;${backColor ?? '0'}m$object$_defaultColor');
+    // logDelegate.log(
+    //     '$_verboseSeq[$tag] $_ansiCsi$foreTag;5;${foreColor ?? '0'}m$_ansiCsi$backTag;5;${backColor ?? '0'}m$object$_defaultColor');
   }
 }

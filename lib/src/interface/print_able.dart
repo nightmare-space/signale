@@ -1,3 +1,3 @@
 abstract class Logable {
-  void log(Object object);
+  void log(DateTime time, Object object);
 }
