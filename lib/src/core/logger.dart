@@ -32,7 +32,7 @@ class Logger {
   }
 
   void i(Object object, {String? tag}) {
-    _print(object, tag ?? 'I', '39');
+    _print(object, tag ?? 'I', '32');
   }
 
   void w(Object object, {String? tag}) {
