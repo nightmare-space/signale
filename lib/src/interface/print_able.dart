@@ -1,3 +1,3 @@
-abstract class Logable {
-  void log(DateTime time, Object object);
+abstract class Printable {
+  void print(DateTime time, Object object);
 }

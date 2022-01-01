@@ -5,20 +5,19 @@ String _defaultColor = '${_ansiCsi}0m';
 String _verboseSeq = '${_ansiCsi}38;5;244m';
 
 class Logger {
-  Logger({this.logDelegate = const DefaultPrint()});
-  Logable logDelegate;
+  Logger({this.printer = const DefaultPrinter()});
+  Printable printer;
   StringBuffer _buffer = StringBuffer();
 
   StringBuffer get buffer => _buffer;
 
-  String tag = '';
   void _print(Object object, String tag, String colorTag) {
     final String data = '$object';
     data.split('\n').forEach((element) {
       final String line =
           '$_verboseSeq[$tag] ${_ansiCsi}1;${colorTag}m$element$_defaultColor';
       _buffer.write(line + '\n');
-      logDelegate.log(DateTime.now(), line);
+      printer.print(DateTime.now(), line);
     });
   }
 

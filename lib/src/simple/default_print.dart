@@ -1,9 +1,11 @@
 import 'package:signale/src/interface/print_able.dart';
+import 'dart:core' as core;
+import 'dart:core';
 
-class DefaultPrint implements Logable {
-  const DefaultPrint();
+class DefaultPrinter implements Printable {
+  const DefaultPrinter();
   @override
-  void log(DateTime time,Object object) {
-    print(object);
+  void print(DateTime time,Object object) {
+    core.print(object);
   }
 }
