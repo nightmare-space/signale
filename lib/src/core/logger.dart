@@ -8,6 +8,7 @@ class Logger {
   Logger({this.printer = const DefaultPrinter()});
   Printable printer;
   StringBuffer _buffer = StringBuffer();
+  LogLevel level = LogLevel.verbose;
 
   StringBuffer get buffer => _buffer;
 
@@ -23,22 +24,37 @@ class Logger {
 
   /// verbose
   void v(Object object, {String? tag}) {
+    if (level.index > LogLevel.verbose.index) {
+      return;
+    }
     _print(object, tag ?? 'V', '0');
   }
 
   void d(Object object, {String? tag}) {
+    if (level.index > LogLevel.debug.index) {
+      return;
+    }
     _print(object, tag ?? 'D', '34');
   }
 
   void i(Object object, {String? tag}) {
+    if (level.index > LogLevel.info.index) {
+      return;
+    }
     _print(object, tag ?? 'I', '32');
   }
 
   void w(Object object, {String? tag}) {
+    if (level.index > LogLevel.warning.index) {
+      return;
+    }
     _print(object, tag ?? 'W', '33');
   }
 
   void e(Object object, {String? tag}) {
+    if (level.index > LogLevel.error.index) {
+      return;
+    }
     _print(object, tag ?? 'E', '31');
   }
 

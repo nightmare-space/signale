@@ -3,6 +3,7 @@ part of signale;
 Logger defaultLogger = Logger();
 
 class Log {
+  static Logger defaultLogger = Logger();
   static StringBuffer buffer = defaultLogger.buffer;
   static void d(Object object, {String? tag}) {
     defaultLogger.d(
