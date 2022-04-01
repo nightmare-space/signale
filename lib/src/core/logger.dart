@@ -30,7 +30,7 @@ class Logger {
     });
   }
 
-  /// verbose
+  /// verbose log
   void v(Object object, {String? tag}) {
     if (level.index > LogLevel.verbose.index) {
       return;
@@ -38,6 +38,7 @@ class Logger {
     _print(object, tag ?? 'V', '0', LogLevel.verbose);
   }
 
+  /// debug log
   void d(Object object, {String? tag}) {
     if (level.index > LogLevel.debug.index) {
       return;
