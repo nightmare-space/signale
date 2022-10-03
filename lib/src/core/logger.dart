@@ -31,40 +31,40 @@ class Logger {
   }
 
   /// verbose log
-  void v(Object object, {String? tag}) {
+  void v(Object? object, {String? tag}) {
     if (level.index > LogLevel.verbose.index) {
       return;
     }
-    _print(object, tag ?? 'V', '0', LogLevel.verbose);
+    _print(object ?? '', 'V/' + (tag ?? ''), '0', LogLevel.verbose);
   }
 
   /// debug log
-  void d(Object object, {String? tag}) {
+  void d(Object? object, {String? tag}) {
     if (level.index > LogLevel.debug.index) {
       return;
     }
-    _print(object, tag ?? 'D', '34', LogLevel.debug);
+    _print(object ?? '', 'D/' + (tag ?? ''), '34', LogLevel.debug);
   }
 
-  void i(Object object, {String? tag}) {
+  void i(Object? object, {String? tag}) {
     if (level.index > LogLevel.info.index) {
       return;
     }
-    _print(object, tag ?? 'I', '32', LogLevel.info);
+    _print(object ?? '', 'I/' + (tag ?? ''), '32', LogLevel.info);
   }
 
-  void w(Object object, {String? tag}) {
+  void w(Object? object, {String? tag}) {
     if (level.index > LogLevel.warning.index) {
       return;
     }
-    _print(object, tag ?? 'W', '33', LogLevel.warning);
+    _print(object ?? '', 'W/' + (tag ?? ''), '33', LogLevel.warning);
   }
 
-  void e(Object object, {String? tag}) {
+  void e(Object? object, {String? tag}) {
     if (level.index > LogLevel.error.index) {
       return;
     }
-    _print(object, tag ?? 'E', '31', LogLevel.error);
+    _print(object ?? '', 'E/' + (tag ?? ''), '31', LogLevel.error);
   }
 
   void custom(
