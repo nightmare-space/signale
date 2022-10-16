@@ -1,6 +1,6 @@
 name: signale
 description: Lightweight and easy to use printing tool.
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/Nightmare-MY/signale
 
 environment:

@@ -1,3 +1,5 @@
+## 0.0.8
+* fix nnbd bug
 ## 0.0.7
 
 * fix some bug.
