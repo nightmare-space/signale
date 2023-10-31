@@ -16,17 +16,19 @@ class Logger {
   Printable printer;
   StringBuffer _buffer = StringBuffer();
   LogLevel level = LogLevel.verbose;
+  StreamController<LogEntity> _streamController = StreamController.broadcast();
+  Stream<LogEntity> get stream => _streamController.stream;
 
   List<LogEntity> buffer = [];
 
   void _print(Object object, String tag, String colorTag, LogLevel level) {
     final String data = '$object';
     data.split('\n').forEach((element) {
-      final String line =
-          '$_verboseSeq[$tag] ${_ansiCsi}1;${colorTag}m$element$_defaultColor';
+      final String line = '$_verboseSeq[$tag] ${_ansiCsi}1;${colorTag}m$element$_defaultColor';
       DateTime time = DateTime.now();
       buffer.add(LogEntity(time, line, level));
       printer.print(DateTime.now(), line);
+      _streamController.add(LogEntity(time, line, level));
     });
   }
 
