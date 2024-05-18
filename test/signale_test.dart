@@ -8,4 +8,6 @@ void main() {
   Log.w('Warning log');
   Log.e('Error log');
   Log.v('Verbose log');
+  Log.c('Color log', 12);
+  Log.c('Color log', 14);
 }

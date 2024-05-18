@@ -1,5 +1,13 @@
+## 0.0.10
+* support print color text
+* bug fix
+
+## 0.0.9
+* support listen log stream
+
 ## 0.0.8
 * fix nnbd bug
+
 ## 0.0.7
 
 * fix some bug.

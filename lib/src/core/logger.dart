@@ -21,7 +21,7 @@ class Logger {
 
   List<LogEntity> buffer = [];
 
-  void _print(Object object, String tag, String colorTag, LogLevel level) {
+  void _print(Object? object, String tag, String colorTag, LogLevel level) {
     final String data = '$object';
     data.split('\n').forEach((element) {
       final String line = '$_verboseSeq[$tag] ${_ansiCsi}1;${colorTag}m$element$_defaultColor';
@@ -37,7 +37,8 @@ class Logger {
     if (level.index > LogLevel.verbose.index) {
       return;
     }
-    _print(object ?? '', 'V/' + (tag ?? ''), '0', LogLevel.verbose);
+    String t = tag == null ? 'V' : '$tag';
+    _print(object, t, '0', LogLevel.verbose);
   }
 
   /// debug log
@@ -45,46 +46,45 @@ class Logger {
     if (level.index > LogLevel.debug.index) {
       return;
     }
-    _print(object ?? '', 'D/' + (tag ?? ''), '34', LogLevel.debug);
+    String t = tag == null ? 'D' : '$tag';
+    _print(object, t, '34', LogLevel.debug);
   }
 
   void i(Object? object, {String? tag}) {
     if (level.index > LogLevel.info.index) {
       return;
     }
-    _print(object ?? '', 'I/' + (tag ?? ''), '32', LogLevel.info);
+    String t = tag == null ? 'I' : '$tag';
+    _print(object, t, '32', LogLevel.info);
   }
 
   void w(Object? object, {String? tag}) {
     if (level.index > LogLevel.warning.index) {
       return;
     }
-    _print(object ?? '', 'W/' + (tag ?? ''), '33', LogLevel.warning);
+    String t = tag == null ? 'W' : '$tag';
+    _print(object, t, '33', LogLevel.warning);
   }
 
   void e(Object? object, {String? tag}) {
     if (level.index > LogLevel.error.index) {
       return;
     }
-    _print(object ?? '', 'E/' + (tag ?? ''), '31', LogLevel.error);
+    String t = tag == null ? 'E' : '$tag';
+    _print(object, t, '31', LogLevel.error);
   }
 
   void custom(
-    Object object, {
-    int? foreColor,
+    Object ?object, {
+    int foreColor = 0,
     int? backColor,
     String tag = 'custom',
   }) {
-    String foreTag = '38';
-    String backTag = '48';
-    if (foreColor == null) {
-      foreTag = '39';
-    }
-    if (backColor == null) {
-      backTag = '49';
-    }
-
-    // logDelegate.log(
-    //     '$_verboseSeq[$tag] $_ansiCsi$foreTag;5;${foreColor ?? '0'}m$_ansiCsi$backTag;5;${backColor ?? '0'}m$object$_defaultColor');
+    DateTime time = DateTime.now();
+    int contrastColor = (foreColor < 16 || (foreColor > 231 && foreColor < 244) || ((foreColor - 16) % 36 ~/ 6 > 2)) ? 0 : 15;
+    String line = '\x1B[48;5;${foreColor}m\x1B[38;5;${contrastColor}m${object}\x1B[0m c:$foreColor b:$contrastColor';
+    printer.print(time, line);
+    buffer.add(LogEntity(time, line, level));
+    _streamController.add(LogEntity(time, line, level));
   }
 }

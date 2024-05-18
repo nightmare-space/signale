@@ -43,9 +43,8 @@ class Log {
 
   static void custom(
     Object object, {
-
     /// 前景色 0-255
-    int? foreColor,
+    int foreColor = 0,
 
     /// 背景色 0-255
     int? backColor,
@@ -57,6 +56,17 @@ class Log {
       backColor: backColor,
       tag: tag!,
     );
+  }
+
+  static void c(Object object, int color) {
+    defaultLogger.custom(
+      object,
+      foreColor: color,
+    );
+  }
+
+  static void r(Object? object) {
+    defaultLogger.custom(object, foreColor: Random().nextInt(231));
   }
 }
 
