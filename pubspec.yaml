@@ -1,5 +1,5 @@
 name: signale
-description: Lightweight and easy to use printing tool.
+description: signale is a simple log package for dart with pure code, inspire from signale.js.
 version: 0.0.12
 homepage: https://github.com/nightmare-space/signale
 
