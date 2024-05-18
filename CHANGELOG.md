@@ -1,3 +1,6 @@
+## 0.0.12
+* add some comment and readme
+
 ## 0.0.10
 * support print color text
 * bug fix

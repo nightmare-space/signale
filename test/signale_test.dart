@@ -1,5 +1,4 @@
 import 'package:signale/signale.dart';
-import 'package:signale/src/foundation/log_level.dart';
 
 void main() {
   Log.defaultLogger.level = LogLevel.info;
@@ -10,4 +9,7 @@ void main() {
   Log.v('Verbose log');
   Log.c('Color log', 12);
   Log.c('Color log', 14);
+  Log.r('this is random color');
+  Log.r('this is random color');
+  Log.r('this is random color');
 }

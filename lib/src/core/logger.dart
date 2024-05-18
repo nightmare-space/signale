@@ -14,7 +14,6 @@ class LogEntity {
 class Logger {
   Logger({this.printer = const DefaultPrinter()});
   Printable printer;
-  StringBuffer _buffer = StringBuffer();
   LogLevel level = LogLevel.verbose;
   StreamController<LogEntity> _streamController = StreamController.broadcast();
   Stream<LogEntity> get stream => _streamController.stream;
@@ -49,7 +48,8 @@ class Logger {
     String t = tag == null ? 'D' : '$tag';
     _print(object, t, '34', LogLevel.debug);
   }
-
+  
+  /// info log
   void i(Object? object, {String? tag}) {
     if (level.index > LogLevel.info.index) {
       return;
@@ -58,6 +58,7 @@ class Logger {
     _print(object, t, '32', LogLevel.info);
   }
 
+  /// warning log
   void w(Object? object, {String? tag}) {
     if (level.index > LogLevel.warning.index) {
       return;
@@ -66,6 +67,7 @@ class Logger {
     _print(object, t, '33', LogLevel.warning);
   }
 
+  /// error log
   void e(Object? object, {String? tag}) {
     if (level.index > LogLevel.error.index) {
       return;
@@ -74,6 +76,7 @@ class Logger {
     _print(object, t, '31', LogLevel.error);
   }
 
+  /// custom  log
   void custom(
     Object ?object, {
     int foreColor = 0,

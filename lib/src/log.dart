@@ -3,9 +3,13 @@ part of signale;
 Logger defaultLogger = Logger();
 
 class Log {
+  /// debug logger
   static Logger defaultLogger = Logger();
+
+  /// log buffer
   static List<LogEntity> buffer = defaultLogger.buffer;
 
+  /// debug log
   static void d(Object? object, {String? tag}) {
     defaultLogger.d(
       object,
@@ -13,6 +17,7 @@ class Log {
     );
   }
 
+  /// info log
   static void i(Object? object, {String? tag}) {
     defaultLogger.i(
       object,
@@ -20,6 +25,7 @@ class Log {
     );
   }
 
+  /// warning log
   static void w(Object? object, {String? tag}) {
     defaultLogger.w(
       object,
@@ -27,6 +33,7 @@ class Log {
     );
   }
 
+  /// verbose log
   static void v(Object? object, {String? tag}) {
     defaultLogger.v(
       object,
@@ -34,6 +41,7 @@ class Log {
     );
   }
 
+  /// error log
   static void e(Object? object, {String? tag}) {
     defaultLogger.e(
       object,
@@ -41,28 +49,20 @@ class Log {
     );
   }
 
+  /// custom log
   static void custom(
     Object object, {
-    /// 前景色 0-255
+    /// foreground 0-255
     int foreColor = 0,
-
-    /// 背景色 0-255
+    /// background 0-255
     int? backColor,
     String? tag,
   }) {
-    defaultLogger.custom(
-      object,
-      foreColor: foreColor,
-      backColor: backColor,
-      tag: tag!,
-    );
+    defaultLogger.custom(object, foreColor: foreColor, backColor: backColor, tag: tag!);
   }
 
   static void c(Object object, int color) {
-    defaultLogger.custom(
-      object,
-      foreColor: color,
-    );
+    defaultLogger.custom(object, foreColor: color);
   }
 
   static void r(Object? object) {
