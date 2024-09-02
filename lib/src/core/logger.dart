@@ -48,7 +48,7 @@ class Logger {
     String t = tag == null ? 'D' : '$tag';
     _print(object, t, '34', LogLevel.debug);
   }
-  
+
   /// info log
   void i(Object? object, {String? tag}) {
     if (level.index > LogLevel.info.index) {
@@ -78,16 +78,19 @@ class Logger {
 
   /// custom  log
   void custom(
-    Object ?object, {
+    Object? object, {
     int foreColor = 0,
     int? backColor,
     String tag = 'custom',
   }) {
-    DateTime time = DateTime.now();
-    int contrastColor = (foreColor < 16 || (foreColor > 231 && foreColor < 244) || ((foreColor - 16) % 36 ~/ 6 > 2)) ? 0 : 15;
-    String line = '\x1B[48;5;${foreColor}m\x1B[38;5;${contrastColor}m${object}\x1B[0m c:$foreColor b:$contrastColor';
-    printer.print(time, line);
-    buffer.add(LogEntity(time, line, level));
-    _streamController.add(LogEntity(time, line, level));
+    final String data = '$object';
+    data.split('\n').forEach((element) {
+      int contrastColor = (foreColor < 16 || (foreColor > 231 && foreColor < 244) || ((foreColor - 16) % 36 ~/ 6 > 2)) ? 0 : 15;
+      String line = '\x1B[48;5;${foreColor}m\x1B[38;5;${contrastColor}m${element}\x1B[0m c:$foreColor b:$contrastColor';
+      DateTime time = DateTime.now();
+      buffer.add(LogEntity(time, line, level));
+      printer.print(DateTime.now(), line);
+      _streamController.add(LogEntity(time, line, level));
+    });
   }
 }
