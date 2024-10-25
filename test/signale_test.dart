@@ -12,4 +12,9 @@ void main() {
   Log.r('this is random color');
   Log.r('this is random color');
   Log.r('this is random color');
+
+  for (int color = 0; color < 256; color++) {
+    Log.c('Color log', color);
+  }
+
 }

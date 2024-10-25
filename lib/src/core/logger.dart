@@ -85,7 +85,7 @@ class Logger {
   }) {
     final String data = '$object';
     data.split('\n').forEach((element) {
-      int contrastColor = (foreColor < 16 || (foreColor > 231 && foreColor < 244) || ((foreColor - 16) % 36 ~/ 6 > 2)) ? 0 : 15;
+      int contrastColor = (foreColor < 16 || (foreColor > 231 && foreColor < 244) || ((foreColor - 16) % 36 ~/ 6 > 2)) ? 7 : 15;
       String line = '\x1B[48;5;${foreColor}m\x1B[38;5;${contrastColor}m${element}\x1B[0m c:$foreColor b:$contrastColor';
       DateTime time = DateTime.now();
       buffer.add(LogEntity(time, line, level));

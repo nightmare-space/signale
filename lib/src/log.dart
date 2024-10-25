@@ -54,6 +54,7 @@ class Log {
     Object object, {
     /// foreground 0-255
     int foreColor = 0,
+
     /// background 0-255
     int? backColor,
     String? tag,
